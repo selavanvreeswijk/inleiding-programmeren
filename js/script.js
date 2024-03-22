@@ -125,8 +125,8 @@ function spelSpelen(){
     const afbeeldenNaamGebruiker = document.querySelector('.optiesspel h3') 
     afbeeldenNaamGebruiker.textContent = naamGebruiker.value;
 
-    const achtergrondAfbeelding = document.querySelector('body'); // achtergrond afbeelding bron https://unsplash.com/photos/two-arcade-cabinets-zpxKdH_xNSI
-    achtergrondAfbeelding.style.backgroundImage = 'url(../images/arcade.jpg)';
+    const achtergrondAfbeelding = document.querySelector('body'); // achtergrondafbeelding bron https://unsplash.com/photos/two-arcade-cabinets-zpxKdH_xNSI
+    achtergrondAfbeelding.style.backgroundImage = 'url(./images/arcade.png)';
 }
 
 const klikOpKeuze = document.querySelector('.spelenpagina section p')
@@ -200,13 +200,18 @@ function bepaalResultaat(gebruikerKeuze, computerKeuze) {
     } else if ((gebruikerKeuze === "steen" && computerKeuze === "schaar") || (gebruikerKeuze === 'papier' && computerKeuze === 'steen') || (gebruikerKeuze === 'schaar' && computerKeuze === "papier")) {
         confetti.style.display = "block";
         setTimeout(confettiWeg, 1500);
-        scoreBoardToenemen()
+        
+        let audioPartyHorn = new Audio('.audio/partyhorn.mp3') // bron https://pixabay.com/sound-effects/party-horn-68443/
+        audioPartyHorn.play();
+
         resultaat.textContent = "Gefeliciteerd, je hebt gewonnen!";
+        scoreBordToenemen()
     } else {
-        let audioError = new Audio('./audio/error.mp3')
+        let audioError = new Audio('./audio/error.mp3') // bron error geluid https://pixabay.com/sound-effects/error-126627/
         audioError.play();
+
         resultaat.textContent = "Jammer, je hebt verloren :(";
-        scoreBoardAfnemen()
+        scoreBordAfnemen()
     }
 }
 
@@ -221,13 +226,13 @@ function confettiWeg() {
 let scoreTekst = document.querySelector('header div p')
 let score = 0
 
-function scoreBoardToenemen(){
+function scoreBordToenemen(){
     scoreTekst.style.display = "block";
     score = score + 1;
     scoreTekst.textContent = 'Jouw score: ' + score; 
 }
 
-function scoreBoardAfnemen(){
+function scoreBordAfnemen(){
     scoreTekst.style.display = "block";
     score = score - 1;
     scoreTekst.textContent = 'Jouw score: ' + score; 
