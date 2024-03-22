@@ -10,7 +10,7 @@ const gameLadenGeluid = new Audio ('./audio/lasercharging.mp3') // https://pixab
 const spelerGekozenGeluid = new Audio ('./audio/teleport.mp3') // https://pixabay.com/sound-effects/teleport-90137/
 const spookyMuziekAfspelen = document.querySelector('header p') 
 const spookyMuziekGeluid = new Audio ('./audio/scarymusic.mp3') // / bron https://pixabay.com/sound-effects/scary-music-box-for-spooky-scenes-165983/
-let muziekStarten = false;
+let muziekStarten = true;
 
 zwarteAchtergrond.style.display = 'none';
 titelSpelen.style.display = 'none';
@@ -32,25 +32,28 @@ function opKnopKlikken(){
     klikOpKnop.volume = 0.05; // bron https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
 }
 
-spookyMuziekAfspelen.addEventListener('click', function(){
-    if (!muziekStarten){
+spookyMuziekAfspelen.addEventListener('click', () => {
+    if (muziekStarten){
         spookyMuziekGeluid.play()
         spookyMuziekGeluid.volume = 0.2;
-        muziekStarten = true;
+        muziekStarten = false;
+        spookyMuziekAfspelen.style.backgroundColor = 'rgb(1,237,143)';
     } else{
         spookyMuziekGeluid.pause()
-        muziekStarten = false;
+        muziekStarten = true;
+        spookyMuziekAfspelen.style.backgroundColor = 'rgb(233,51,153)';
     } 
 })
 
-startKnop.addEventListener('click', function(){
+startKnop.addEventListener('click', () => {
     opKnopKlikken()
-    gamenaamTekst.style.display = 'block';
-    titelIndex.style.display = 'none';
-    zwarteAchtergrond.style.display = 'block';
     audioRockIntro.play()
     audioRockIntro.volume = 0.3;
     spookyMuziekGeluid.pause();
+    
+    gamenaamTekst.style.display = 'block';
+    titelIndex.style.display = 'none';
+    zwarteAchtergrond.style.display = 'block';
 })
 
 // ------------------------------naam invoeren--------------------------------
@@ -63,56 +66,44 @@ const knopIndienen = document.querySelector('.gamenaaminvoeren button')
 const titelAllereerst = document.querySelector('.gamenaaminvoeren section h2')
 const volgendeKnop = document.querySelector('.volgendeknop')
 
-knopIndienen.addEventListener("click", function(){
+knopIndienen.addEventListener("click", () => {
     opKnopKlikken()
     berichtVerschijnen.style.display = 'block';
     berichtVerschijnen.style.color = 'red';
-    berichtVerschijnen.textContent= 'Sorry ' + naamGebruiker.value + ", deze naam is al bezet. Kies een andere";
+    berichtVerschijnen.textContent= `Sorry ${naamGebruiker.value}, deze naam is al bezet. Kies een andere`; // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
     knopIndienen.style.display = 'none';
     naamGebruiker.style.display = 'none';
     titelAllereerst.style.display = 'none';
 
-    veranderTekst()
+    // reeks teksten laten verschijnen en verdwijnen
+
+    setTimeout(() => {
+        berichtVerschijnen.textContent = 'Grapje';
+        berichtVerschijnen.style.color = 'white';
+        berichtVerschijnen.classList.add('grapje');
+
+        setTimeout(() => {
+            berichtVerschijnen.textContent = `Laten we doorgaan, ${naamGebruiker.value}!`;
+            berichtVerschijnen.style.color = 'white';
+            volgendeKnop.style.display = 'block';
+            berichtVerschijnen.classList.remove('grapje');
+        }, 1500);
+    }, 1500);
 })
-
-// reeks teksten laten verschijnen en verdwijnen
-
-function veranderTekst(){ 
-    setTimeout(eersteTekst, 1500)
-}
-
-function eersteTekst(){
-    berichtVerschijnen.textContent='Grapje';
-    berichtVerschijnen.style.color = 'white';
-    berichtVerschijnen.classList.add('grapje');
-
-    doorgaan();
-}
-
-function doorgaan(){
-    setTimeout(tweedeTekst, 1500)
-}
-function tweedeTekst(){
-    berichtVerschijnen.textContent="Laten we doorgaan, " + naamGebruiker.value + "!";
-    berichtVerschijnen.style.color = 'white';
-
-    volgendeKnop.style.display ='block';
-    berichtVerschijnen.classList.remove('grapje');
-}
 
 // -----------------------naam invoeren + grap------------------------
 
 // ------------------------character kiezen---------------------------
 
 const characterKiezen = document.querySelector('.characterkiezen')
-const characterLevi = document.querySelector('#levi')
-const characterEren = document.querySelector('#eren')
-const characterHange = document.querySelector('#hange')
-const gekozenCharacter = document.querySelector('#charactergebruiker')
+const characterLevi = document.getElementById('levi') // https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
+const characterEren = document.getElementById('eren')
+const characterHange = document.getElementById('hange')
+const gekozenCharacter = document.getElementById('charactergebruiker')
 
 characterKiezen.style.display ='none';
 
-volgendeKnop.addEventListener("click", function(){
+volgendeKnop.addEventListener("click", () => {
     opKnopKlikken()
     titelIndex.style.display = "none";
     gamenaamTekst.style.display = "none";
@@ -120,19 +111,15 @@ volgendeKnop.addEventListener("click", function(){
     characterKiezen.style.display ='block';
 })
 
-characterLevi.addEventListener('click', function(){
-    gameLaden();
-    gekozenCharacter.src = './images/levi.png';
-})
+// op speler klikken
 
-characterEren.addEventListener('click', function(){
-    gameLaden();
-    gekozenCharacter.src = './images/eren.png';
-})
+const alleSpelers = [characterEren, characterHange, characterLevi];
 
-characterHange.addEventListener('click', function(){
-    gameLaden();
-    gekozenCharacter.src = './images/hange.png';
+alleSpelers.forEach(speler => {
+    speler.addEventListener('click', () => { // <-- Hier is de komma verwijderd
+        gameLaden();
+        gekozenCharacter.src = `./images/${speler.id}.png`;
+    })
 })
 
 function gameLaden(){
@@ -161,7 +148,7 @@ function spelSpelen(){
     achtergrondMuziekje.volume = 0.3;
 
     const afbeeldenNaamGebruiker = document.querySelector('.optiesspel h3') 
-    afbeeldenNaamGebruiker.textContent = naamGebruiker.value;
+    afbeeldenNaamGebruiker.textContent =`${naamGebruiker.value}`;
 
     const achtergrondAfbeelding = document.querySelector('body'); // achtergrondafbeelding bron https://unsplash.com/photos/two-arcade-cabinets-zpxKdH_xNSI
     achtergrondAfbeelding.style.backgroundImage = 'url(./images/arcade.png)';
@@ -171,7 +158,7 @@ const klikOpKeuze = document.querySelector('.spelenpagina section p')
 
 // tekst laten knipperen
 
-setInterval(function() { 
+setInterval( () => { 
     if (klikOpKeuze.style.visibility === 'hidden') { // chatGPT heeft me geholpen met de term visibility
         klikOpKeuze.style.visibility = 'visible';
     } else {
@@ -181,10 +168,10 @@ setInterval(function() {
 
 // klikken op keuze steen papier schaar, werkelijk spelen
 
-const afbeeldingSteen = document.querySelector('#steen')
-const afbeeldingPapier = document.querySelector('#papier')
-const afbeeldingSchaar = document.querySelector('#schaar')
-const computerAfbeelding = document.querySelector('#computerkeuze')
+const afbeeldingSteen = document.getElementById('steen')
+const afbeeldingPapier = document.getElementById('papier')
+const afbeeldingSchaar = document.getElementById('schaar')
+const computerAfbeelding = document.getElementById('computerkeuze')
 const resultaat = document.querySelector('header div h2')
 const afbeeldingGebruikerkeuze = document.querySelector('.gebruikerkeuze')
 const audioPartyHorn = new Audio('./audio/partyhorn.mp3') // bron https://pixabay.com/sound-effects/party-horn-68443/
@@ -198,17 +185,17 @@ const afbeeldingen = {
     schaar: "./images/schaar.png"
 }
 
-afbeeldingSteen.addEventListener('click', function(){
+afbeeldingSteen.addEventListener('click', () => {
     spelen('steen');
     afbeeldingGebruikerkeuze.src = afbeeldingen.steen;
 })
 
-afbeeldingPapier.addEventListener('click', function(){
+afbeeldingPapier.addEventListener('click', () => {
     spelen('papier');
     afbeeldingGebruikerkeuze.src = afbeeldingen.papier;
 })
 
-afbeeldingSchaar.addEventListener('click', function(){
+afbeeldingSchaar.addEventListener('click', () => {
     spelen('schaar');
     afbeeldingGebruikerkeuze.src = afbeeldingen.schaar;
 })
@@ -224,7 +211,7 @@ function spelen(gebruikerKeuze) {
     computerAfbeelding.style.display = 'block'
     computerAfbeelding.src = "./images/loading.gif"; // loading gif bron https://www.google.com/search?q=loading+gif+png&tbm=isch&ved=2ahUKEwiR3KDg-4SFAxXUj_0HHQfyC-oQ2-cCegQIABAA&oq=loading+gif+png&gs_lp=EgNpbWciD2xvYWRpbmcgZ2lmIHBuZzIFEAAYgAQyBBAAGB4yBBAAGB4yBBAAGB4yBBAAGB4yBhAAGAUYHjIGEAAYBRgeMgYQABgFGB4yBhAAGAUYHjIGEAAYBRgeSN0ZUOMCWJcWcAZ4AJABAJgBOaAB5QKqAQE3uAEDyAEA-AEBigILZ3dzLXdpei1pbWfCAgoQABiABBiKBRhDwgIGEAAYBxgewgIHEAAYgAQYE8ICCBAAGAUYHhgTwgIIEAAYCBgeGBOIBgE&sclient=img&ei=v_P7ZdGADNSf9u8Ph-Sv0A4&bih=732&biw=1512&prmd=ivnbz&rlz=1C5MACD_enNL1064NL1064#imgrc=9rvBEbPXvUM4PM
 
-    setTimeout(function(){
+    setTimeout(() => {
         const computerKeuze = getRandomKeuze();
         computerAfbeelding.src = afbeeldingen[computerKeuze];
         bepaalResultaat(gebruikerKeuze, computerKeuze);
@@ -236,7 +223,7 @@ function bepaalResultaat(gebruikerKeuze, computerKeuze) {
         resultaat.textContent = 'Gelijkspel!';
     } else if ((gebruikerKeuze === "steen" && computerKeuze === "schaar") || (gebruikerKeuze === 'papier' && computerKeuze === 'steen') || (gebruikerKeuze === 'schaar' && computerKeuze === "papier")) {
         // confetti
-        setTimeout(function(){
+        setTimeout(() => {
             confetti.style.display = "none";
         },1500);
         confetti.style.display = "block";
@@ -244,7 +231,6 @@ function bepaalResultaat(gebruikerKeuze, computerKeuze) {
     
         resultaat.textContent = "Gefeliciteerd, je hebt gewonnen!";
         scoreBordToenemen()
-        
 
     } else {
         const audioError = new Audio('./audio/error.mp3') // bron error geluid https://pixabay.com/sound-effects/error-126627/
@@ -263,13 +249,13 @@ let score = 0
 function scoreBordToenemen(){
     scoreTekst.style.display = "block";
     score = score + 1;
-    scoreTekst.textContent = 'Jouw score: ' + score; 
+    scoreTekst.textContent = `Jouw score: + ${score}`; 
 }
 
 function scoreBordAfnemen(){
     scoreTekst.style.display = "block";
     score = score - 1;
-    scoreTekst.textContent = 'Jouw score: ' + score; 
+    scoreTekst.textContent = `Jouw score: ${score}`; 
 }
 
 // -----------------------------------spel spelen---------------------------------------

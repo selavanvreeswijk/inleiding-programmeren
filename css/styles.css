@@ -59,7 +59,9 @@ button{
   text-align: center; 
   font-size: 1em;
   padding: 0.9em 3.1em;
-  cursor: pointer; 
+  cursor: pointer;
+
+  transition: background-color 0.3s, color 0.3s;
 }
 
 button:hover{
@@ -109,6 +111,7 @@ header button{ /* startknop */
   margin-top: 5.5em;
   font-size: 1.5em;
   padding: 0.8em 4em;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 header button:hover{
@@ -134,18 +137,23 @@ header button:hover{
   }
 }
 
-header section p{
-  margin-top: 10em;
-  margin-left: 7em;
-  color: black;
+header section p{  /* spooky muziekje knop */
+  margin-top: 9em;
+  margin-left: 6em;
+  color: white;
  
   padding: 1.5em;
   width: 2.5vw;
-  background-color: rgb(1,237,143);
+  background-color: rgb(233,51,153);
   border-radius: 50%;
   font-size: 0.6em;
   cursor: pointer;
-  border: 1.5px solid;
+  border: 1.5px black solid;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+header section p:hover{
+  background-color: rgb(1,237,143);
 }
 
 /* --------------------------index---------------------- */
