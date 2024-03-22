@@ -5,20 +5,18 @@ const titelSpelen = document.querySelector('header div')
 const paginaSpelen = document.querySelector('.spelenpagina')
 const confetti = document.querySelector('.confetti')
 const spelLaden = document.querySelector('.spelladen')
-const audioEngeMuziek = new Audio ('./audio/scarymusic.mp3') // bron https://pixabay.com/sound-effects/scary-music-box-for-spooky-scenes-165983/
 const klikOpKnop = new Audio ('./audio/buttonpress.mp3') // bron https://pixabay.com/sound-effects/notification-for-game-scenes-132473/ 
+const gameLadenGeluid = new Audio ('./audio/lasercharging.mp3') // https://pixabay.com/sound-effects/062708-laser-charging-81968/
+const spelerGekozenGeluid = new Audio ('./audio/teleport.mp3') // https://pixabay.com/sound-effects/teleport-90137/
+const spookyMuziekAfspelen = document.querySelector('header p') 
+const spookyMuziekGeluid = new Audio ('./audio/scarymusic.mp3') // / bron https://pixabay.com/sound-effects/scary-music-box-for-spooky-scenes-165983/
+let muziekStarten = false;
 
 zwarteAchtergrond.style.display = 'none';
 titelSpelen.style.display = 'none';
 paginaSpelen.style.display = 'none';
 confetti.style.display = 'none';
 spelLaden.style.display = 'none';
-// audioEngeMuziek.play()
-audioEngeMuziek.volume = 0.3; // bron https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
-
-window.onload = function(){ // hier heeft chatGPT me bij geholpen
-    audioEngeMuziek.play();
-};
 
 // ------------------------------naam invoeren--------------------------------
 
@@ -31,17 +29,28 @@ const audioRockIntro = new Audio ('./audio/rockintro.mp3') // bron https://pixab
 
 function opKnopKlikken(){
     klikOpKnop.play()
-    klikOpKnop.volume = 0.05;
+    klikOpKnop.volume = 0.05; // bron https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
 }
+
+spookyMuziekAfspelen.addEventListener('click', function(){
+    if (!muziekStarten){
+        spookyMuziekGeluid.play()
+        spookyMuziekGeluid.volume = 0.2;
+        muziekStarten = true;
+    } else{
+        spookyMuziekGeluid.pause()
+        muziekStarten = false;
+    } 
+})
 
 startKnop.addEventListener('click', function(){
     opKnopKlikken()
     gamenaamTekst.style.display = 'block';
     titelIndex.style.display = 'none';
     zwarteAchtergrond.style.display = 'block';
-    audioEngeMuziek.pause()
     audioRockIntro.play()
     audioRockIntro.volume = 0.3;
+    spookyMuziekGeluid.pause();
 })
 
 // ------------------------------naam invoeren--------------------------------
@@ -61,7 +70,7 @@ knopIndienen.addEventListener("click", function(){
     berichtVerschijnen.textContent= 'Sorry ' + naamGebruiker.value + ", deze naam is al bezet. Kies een andere";
     knopIndienen.style.display = 'none';
     naamGebruiker.style.display = 'none';
-    titelAllereerst.style.display = 'none'
+    titelAllereerst.style.display = 'none';
 
     veranderTekst()
 })
@@ -127,21 +136,29 @@ characterHange.addEventListener('click', function(){
 })
 
 function gameLaden(){
+    gameLadenGeluid.play();
+    spelerGekozenGeluid.play();
     characterKiezen.style.display ='none';
     spelLaden.style.display = 'block';
 
-    setTimeout(spelSpelen, 3500);
+    setTimeout(spelSpelen, 4000);
 }
 
 // ------------------------character kiezen---------------------------
 
 // ------------------------------spel spelen--------------------------
 
+const achtergrondMuziekje = new Audio('./audio/achtergrondmuziek.mp3') // https://pixabay.com/sound-effects/game-music-loop-6-144641/
+
 function spelSpelen(){
     zwarteAchtergrond.style.display = 'none';
     titelSpelen.style.display = 'block';
     paginaSpelen.style.display = 'flex';
     audioRockIntro.pause()
+    achtergrondMuziekje.loop = true; // bron https://gist.github.com/thebigbad/878907
+    achtergrondMuziekje.play();
+
+    achtergrondMuziekje.volume = 0.3;
 
     const afbeeldenNaamGebruiker = document.querySelector('.optiesspel h3') 
     afbeeldenNaamGebruiker.textContent = naamGebruiker.value;

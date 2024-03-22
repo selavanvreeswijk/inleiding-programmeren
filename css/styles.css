@@ -51,7 +51,7 @@ p, button{
 }
 
 button{
-  background-color: rgb(233,51,153);
+  background-color:rgb(233,51,153);
   border: none;
 
   color: white; 
@@ -133,6 +133,21 @@ header button:hover{
     transform: rotate(-5deg);
   }
 }
+
+header section p{
+  margin-top: 10em;
+  margin-left: 7em;
+  color: black;
+ 
+  padding: 1.5em;
+  width: 2.5vw;
+  background-color: rgb(1,237,143);
+  border-radius: 50%;
+  font-size: 0.6em;
+  cursor: pointer;
+  border: 1.5px solid;
+}
+
 /* --------------------------index---------------------- */
 
 /* --------------------------naam invoeren---------------------- */
@@ -302,7 +317,7 @@ header div h2{
 }
 
 .spelenpagina h3{
-  color: cyan;
+  color: rgb(149,245,229);
   font-family: 'Bowser', sans-serif;
   letter-spacing: 0.2em;
   font-size: 5em;
