@@ -5,12 +5,20 @@ const titelSpelen = document.querySelector('header div')
 const paginaSpelen = document.querySelector('.spelenpagina')
 const confetti = document.querySelector('.confetti')
 const spelLaden = document.querySelector('.spelladen')
+const audioEngeMuziek = new Audio ('./audio/scarymusic.mp3') // bron https://pixabay.com/sound-effects/scary-music-box-for-spooky-scenes-165983/
+const klikOpKnop = new Audio ('./audio/buttonpress.mp3') // bron https://pixabay.com/sound-effects/notification-for-game-scenes-132473/ 
 
 zwarteAchtergrond.style.display = 'none';
 titelSpelen.style.display = 'none';
 paginaSpelen.style.display = 'none';
 confetti.style.display = 'none';
 spelLaden.style.display = 'none';
+// audioEngeMuziek.play()
+audioEngeMuziek.volume = 0.3; // bron https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
+
+window.onload = function(){ // hier heeft chatGPT me bij geholpen
+    audioEngeMuziek.play();
+};
 
 // ------------------------------naam invoeren--------------------------------
 
@@ -19,11 +27,21 @@ spelLaden.style.display = 'none';
 const gamenaamTekst = document.querySelector('.gamenaaminvoeren')
 const titelIndex = document.querySelector('header section')
 const startKnop = document.querySelector('header section button')
+const audioRockIntro = new Audio ('./audio/rockintro.mp3') // bron https://pixabay.com/sound-effects/yeah-18130/
+
+function opKnopKlikken(){
+    klikOpKnop.play()
+    klikOpKnop.volume = 0.05;
+}
 
 startKnop.addEventListener('click', function(){
+    opKnopKlikken()
     gamenaamTekst.style.display = 'block';
     titelIndex.style.display = 'none';
     zwarteAchtergrond.style.display = 'block';
+    audioEngeMuziek.pause()
+    audioRockIntro.play()
+    audioRockIntro.volume = 0.3;
 })
 
 // ------------------------------naam invoeren--------------------------------
@@ -37,6 +55,7 @@ const titelAllereerst = document.querySelector('.gamenaaminvoeren section h2')
 const volgendeKnop = document.querySelector('.volgendeknop')
 
 knopIndienen.addEventListener("click", function(){
+    opKnopKlikken()
     berichtVerschijnen.style.display = 'block';
     berichtVerschijnen.style.color = 'red';
     berichtVerschijnen.textContent= 'Sorry ' + naamGebruiker.value + ", deze naam is al bezet. Kies een andere";
@@ -84,7 +103,8 @@ const gekozenCharacter = document.querySelector('#charactergebruiker')
 
 characterKiezen.style.display ='none';
 
-volgendeKnop.addEventListener("click", function(){ 
+volgendeKnop.addEventListener("click", function(){
+    opKnopKlikken()
     titelIndex.style.display = "none";
     gamenaamTekst.style.display = "none";
     volgendeKnop.style.display ='none';
@@ -92,17 +112,17 @@ volgendeKnop.addEventListener("click", function(){
 })
 
 characterLevi.addEventListener('click', function(){
-    gameLaden()
+    gameLaden();
     gekozenCharacter.src = './images/levi.png';
 })
 
 characterEren.addEventListener('click', function(){
-    gameLaden()
+    gameLaden();
     gekozenCharacter.src = './images/eren.png';
 })
 
 characterHange.addEventListener('click', function(){
-    gameLaden()
+    gameLaden();
     gekozenCharacter.src = './images/hange.png';
 })
 
@@ -121,6 +141,7 @@ function spelSpelen(){
     zwarteAchtergrond.style.display = 'none';
     titelSpelen.style.display = 'block';
     paginaSpelen.style.display = 'flex';
+    audioRockIntro.pause()
 
     const afbeeldenNaamGebruiker = document.querySelector('.optiesspel h3') 
     afbeeldenNaamGebruiker.textContent = naamGebruiker.value;
@@ -149,6 +170,7 @@ const afbeeldingSchaar = document.querySelector('#schaar')
 const computerAfbeelding = document.querySelector('#computerkeuze')
 const resultaat = document.querySelector('header div h2')
 const afbeeldingGebruikerkeuze = document.querySelector('.gebruikerkeuze')
+const audioPartyHorn = new Audio('./audio/partyhorn.mp3') // bron https://pixabay.com/sound-effects/party-horn-68443/
 
 afbeeldingGebruikerkeuze.style.display = 'none'
 computerAfbeelding.style.display = 'none'
@@ -161,19 +183,16 @@ const afbeeldingen = {
 
 afbeeldingSteen.addEventListener('click', function(){
     spelen('steen');
-    afbeeldingGebruikerkeuze.style.display = 'block';
     afbeeldingGebruikerkeuze.src = afbeeldingen.steen;
 })
 
 afbeeldingPapier.addEventListener('click', function(){
     spelen('papier');
-    afbeeldingGebruikerkeuze.style.display = 'block';
     afbeeldingGebruikerkeuze.src = afbeeldingen.papier;
 })
 
 afbeeldingSchaar.addEventListener('click', function(){
     spelen('schaar');
-    afbeeldingGebruikerkeuze.style.display = 'block';
     afbeeldingGebruikerkeuze.src = afbeeldingen.schaar;
 })
 
@@ -184,6 +203,7 @@ function getRandomKeuze(){
 }
 
 function spelen(gebruikerKeuze) {
+    afbeeldingGebruikerkeuze.style.display = 'block';
     computerAfbeelding.style.display = 'block'
     computerAfbeelding.src = "./images/loading.gif"; // loading gif bron https://www.google.com/search?q=loading+gif+png&tbm=isch&ved=2ahUKEwiR3KDg-4SFAxXUj_0HHQfyC-oQ2-cCegQIABAA&oq=loading+gif+png&gs_lp=EgNpbWciD2xvYWRpbmcgZ2lmIHBuZzIFEAAYgAQyBBAAGB4yBBAAGB4yBBAAGB4yBBAAGB4yBhAAGAUYHjIGEAAYBRgeMgYQABgFGB4yBhAAGAUYHjIGEAAYBRgeSN0ZUOMCWJcWcAZ4AJABAJgBOaAB5QKqAQE3uAEDyAEA-AEBigILZ3dzLXdpei1pbWfCAgoQABiABBiKBRhDwgIGEAAYBxgewgIHEAAYgAQYE8ICCBAAGAUYHhgTwgIIEAAYCBgeGBOIBgE&sclient=img&ei=v_P7ZdGADNSf9u8Ph-Sv0A4&bih=732&biw=1512&prmd=ivnbz&rlz=1C5MACD_enNL1064NL1064#imgrc=9rvBEbPXvUM4PM
 
@@ -198,16 +218,19 @@ function bepaalResultaat(gebruikerKeuze, computerKeuze) {
     if (gebruikerKeuze === computerKeuze) {
         resultaat.textContent = 'Gelijkspel!';
     } else if ((gebruikerKeuze === "steen" && computerKeuze === "schaar") || (gebruikerKeuze === 'papier' && computerKeuze === 'steen') || (gebruikerKeuze === 'schaar' && computerKeuze === "papier")) {
+        // confetti
+        setTimeout(function(){
+            confetti.style.display = "none";
+        },1500);
         confetti.style.display = "block";
-        setTimeout(confettiWeg, 1500);
-        
-        let audioPartyHorn = new Audio('.audio/partyhorn.mp3') // bron https://pixabay.com/sound-effects/party-horn-68443/
         audioPartyHorn.play();
-
+    
         resultaat.textContent = "Gefeliciteerd, je hebt gewonnen!";
         scoreBordToenemen()
+        
+
     } else {
-        let audioError = new Audio('./audio/error.mp3') // bron error geluid https://pixabay.com/sound-effects/error-126627/
+        const audioError = new Audio('./audio/error.mp3') // bron error geluid https://pixabay.com/sound-effects/error-126627/
         audioError.play();
 
         resultaat.textContent = "Jammer, je hebt verloren :(";
@@ -215,15 +238,9 @@ function bepaalResultaat(gebruikerKeuze, computerKeuze) {
     }
 }
 
-// confetti
-
-function confettiWeg() {
-    confetti.style.display = "none";
-}
-
 // scoreboard
 
-let scoreTekst = document.querySelector('header div p')
+const scoreTekst = document.querySelector('header div p')
 let score = 0
 
 function scoreBordToenemen(){
