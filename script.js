@@ -125,8 +125,8 @@ function spelSpelen(){
     const afbeeldenNaamGebruiker = document.querySelector('.optiesspel h3') 
     afbeeldenNaamGebruiker.textContent = naamGebruiker.value;
 
-    const achtergrondAfbeelding = document.querySelector('body'); // achtergrond afbeelding bron https://unsplash.com/photos/two-arcade-cabinets-zpxKdH_xNSI
-    achtergrondAfbeelding.style.backgroundImage = 'url(../images/arcade.png)';
+    const achtergrondAfbeelding = document.querySelector('body'); // achtergrondafbeelding bron https://unsplash.com/photos/two-arcade-cabinets-zpxKdH_xNSI
+    achtergrondAfbeelding.style.backgroundImage = 'url(../images/gameroom.jpg)';
 }
 
 const klikOpKeuze = document.querySelector('.spelenpagina section p')
