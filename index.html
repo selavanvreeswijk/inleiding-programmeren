@@ -3,34 +3,93 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Steen, papier, schaar</title>
+        <title>Game</title>
         <link href="./css/styles.css" rel="stylesheet">
-        <!-- <flavicon></flavicon>    <link rel="icon" href="./images/flavicon.png">  -->
+        <link rel="icon" href="./images/rock.png">
     </head>
 
-    <body class="index">
-
+    <body>
         <header>
-            <h1>Steen, papier, schaar</h1>
-            <p>Durf jij het aan?</p>
+            <section>
+                <h1>Legendarische game</h1>
+                <h2>Durf jij de uitdaging aan?</h2>
 
-            <button class="knop1">Start</button>
+                <button>Start</button>
+
+                <img src="./images/spook.webp" alt="Een spook"> <!-- bron spook https://www.vecteezy.com/png/12658583-halloween-ghost-spooky-ghost-->
+            </section>
+       
+            <div>
+                <h1>Steen, papier, schaar</h1>
+
+                <h2>Versla jij Sela?</h2>  
+
+                <p>Jouw score:</p>
+            </div>
         </header>
 
-        <div class="naaminvoeren">
-            <section>
-                <h2>Allereerst!</h2>
+        <main>
+            <div class="zwarteachtergrond">
+                <div class="gamenaaminvoeren">
+                    <section>
+                        <h2>First things first!</h2>
 
-                <p id="bericht">Wat is je gamenaam?<p>
+                        <p>Wat is je gamenaam?<p>
 
-                <input id="input"> <br> <br> <!-- bron input veld leren gebruiken https://www.youtube.com/watch?v=KB6Yg5hNrqc -->
-                <button class="knop2" onclick="myFunction()">Indienen</button>
+                        <input> <br> <br> <!-- bron input veld https://www.youtube.com/watch?v=KB6Yg5hNrqc -->
 
-                <a href="spelen.html"><button class="knop3">Volgende</button></a>
-            </section>
-        </div>
+                        <button>Indienen</button>
+                    </section>
+                </div>
+
+                <button class="volgendeknop">Volgende</button>
+
+                <div class="characterkiezen">
+                    <h2>Kies je character</h2>
+
+                    <img id='levi' src="./images/levi.png" alt="Levi Ackerman, uit de serie Attack on Titan"> <!-- bron Levi https://7dsgc.fandom.com/wiki/Red_Levi -->
+                    <img id='eren' src="./images/eren.png" alt="Eren Yeager, uit de serie Attack on Titan"> <!-- bron Eren https://7dsgc.fandom.com/wiki/Blue_Cadet_Eren_Yeager -->
+                    <img id='hange' src="./images/hange.png" alt="Hange Zoë, uit de serie Attack on Titan"> <!-- bron Hange https://www.deviantart.com/maxiuchiha22/art/Hange-Zoe-render-3-Attack-on-Titan-TACTICS-878500199 -->
+                </div>
+
+                <div class="spelladen">
+                    <h3>Bereid je voor op de ultieme uitdaging</h3>
+
+                    <img src="./images/loading.gif" alt="Loading Gif">
+                </div>
+            </div>
+
+            <div class="spelenpagina">
+                <section>
+                    <img id='charactergebruiker' src="" alt="Keuze van de gebruiker voor het character"> 
+
+                    <div class="optiesspel">
+                        <h3 class="inputgebruiker"></h3>
+
+                        <p>*Klik op je keuze*</p>
+
+                        <img id='steen' src="./images/rock.png" alt="Dwayne, The Rock, Johnson"> <!-- bron The Rock https://www.google.com/search?q=the+rock+png&tbm=isch&ved=2ahUKEwjH6MyyseqEAxXcy7sIHQwCDCgQ2-cCegQIABAA&oq=the+rock+png&gs_lp=EgNpbWciDHRoZSByb2NrIHBuZzIKEAAYgAQYigUYQzINEAAYgAQYigUYQxixAzIFEAAYgAQyChAAGIAEGIoFGEMyCBAAGIAEGLEDMggQABiABBixAzIFEAAYgAQyBRAAGIAEMgsQABiABBixAxiDATIFEAAYgARItBBQ1QZYxA9wAHgAkAEAmAF9oAG7BKoBAzQuMrgBA8gBAPgBAYoCC2d3cy13aXotaW1niAYB&sclient=img&ei=HgTuZcfhAdyX7_UPjISwwAI&bih=735&biw=1512&rlz=1C5MACD_enNL1064NL1064#imgrc=OUIP9teyJK_EqM -->
+                        <img id='papier' src="./images/papier.jpeg" alt="Een stuk papier"> <!-- bron papier https://nl.vecteezy.com/png/1208962-papier -->
+                        <img id='schaar' src="./images/schaar.png" alt="Een schaar"> <!-- bron schaar https://www.google.com/search?q=scissors+png&tbm=isch&ved=2ahUKEwj2kZm-suqEAxVsof0HHb84A8cQ2-cCegQIABAA&oq=scissor&gs_lp=EgNpbWciB3NjaXNzb3IqAggAMgoQABiABBiKBRhDMgoQABiABBiKBRhDMgUQABiABDIFEAAYgAQyChAAGIAEGIoFGEMyBRAAGIAEMgUQABiABDIKEAAYgAQYigUYQzIKEAAYgAQYigUYQzIFEAAYgARIqyJQ9ARYwxhwAngAkAECmAGUBaABzRaqAQsxLjUuMS4yLjEuMbgBAcgBAPgBAYoCC2d3cy13aXotaW1nwgIGEAAYBxgewgIEEAAYHsICDRAAGIAEGIoFGEMYsQOIBgE&sclient=img&ei=QgXuZfboL-zC9u8Pv_GMuAw&bih=735&biw=1512&rlz=1C5MACD_enNL1064NL1064#imgrc=Jn3k6symbRdiJM --> 
+                    </div>
+
+                    <img class='gebruikerkeuze' src="" alt = "Keuze gebruiker, steen papier of schaar">
+                </section>
+                 
+                <section>
+                    <div>
+                        <img id='computerkeuze' src="" alt="Random gegenereerde computerkeuze steen papier of schaar">
+                    </div>
+
+                    <h3>Sela</h3>
+
+                    <img class='mikasa' src="./images/mikasa.png" alt="Mikasa Ackerman, uit de serie Attack on Titan"> <!-- bron Mikasa https://vsbattles.fandom.com/wiki/Mikasa_Ackerman -->
+                </section>
+            </div>
+
+            <img class=confetti src="./images/confetti.gif" alt="Een confetti gif"> <!-- bron confetti https://www.google.com/search?sca_esv=7a2ea2d467a33581&rlz=1C5MACD_enNL1064NL1064&q=confetti+gif+png&tbm=isch&source=lnms&prmd=ivnbz&sa=X&sqi=2&ved=2ahUKEwic3sGW24KFAxVMxQIHHULGABMQ0pQJegQIDBAB&biw=1512&bih=732&dpr=2#imgrc=4zLGFzAHnTiJGM -->
+        </main>
 
         <script src="js/script.js"></script>
     </body>
 </html>
-

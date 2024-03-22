@@ -1,83 +1,128 @@
 * {
     margin: 0;
     padding: 0;
-  }
-
-  /* nog invoeren over lettertype:
-  
-  @font-face {
-    font-family:'PFD Black';
-    src: url('../fonts/playfairdisplayblack.ttf') format('TrueType');
-  } */
-
-/* 
-  html{
-    background-color:rgba(196, 173, 149, 0.784);
-  
-    font-family: 'PFD Regular', sans-serif; 
-    letter-spacing: 0.04em;
-    color: #8f3e5c;
-  } */
-
-/* --------------------------index---------------------- */
-
-
-.index{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-
-    margin-top: 11em;
 }
 
-.index h1{
-    font-size: 5em;
+@font-face {
+    font-family:'Gamera';
+    src: url('../fonts/gamera.ttf') format('TrueType');
 }
 
-.index header p{
-    margin-top: 1.2em;
-    margin-bottom: 3em;
+@font-face {
+  font-family:'Engel';
+  src: url('../fonts/angel.ttf') format('TrueType');
+}
 
-    font-size: 1.5em;
+@font-face {
+  font-family:'Agane';
+  src: url('../fonts/agane.ttf') format('TrueType');
+}
+
+@font-face {
+  font-family:'Bowser';
+  src: url('../fonts/bowser.ttf') format('TrueType');
+}
+
+html{
+  background-color: pink; /* roze gehouden want dat is leuk wanneer je de pagina beweegt */
+  letter-spacing: 0.04em;
+  /* font-family: '', sans-serif;  */
+}
+
+body{
+  background-image: url(../images/gameroom.jpg); /* bron https://unsplash.com/photos/gaming-room-with-arcade-machines-m3hn2Kn5Bns */
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+h1, h2{
+  font-family: 'Gamera', sans-serif;
+  color: yellow;
+}
+
+h3{
+  font-family: 'Engel', sans-serif;
+  color: yellow;
+}
+
+p, button{
+  font-family: 'Agane', sans-serif; 
 }
 
 button{
-    background-color: #a84a94; 
-    border: none; 
-    color: white; 
-    padding: 15px 32px; 
-    text-align: center; 
-    text-decoration: none; 
-    display: inline-block; 
-    font-size: 16px;
-    margin: 4px 2px; 
-    cursor: pointer; 
-    border-radius: 8px; 
-  }
+  background-color: rgb(233,51,153);
+  border: none;
+
+  color: white; 
+
+  text-align: center; 
+  text-decoration: none; 
+  font-size: 1em;
+
+  padding: 0.9em 3.1em;
+
+  cursor: pointer; 
+}
 
 button:hover{
-    background-color: #813b72;
+  background-color: rgb(1,237,143);
+}
+
+/* ----------------------------index------------------------- */
+
+@keyframes verplaatsendSpook{
+  0%{
+    right: 51.8%;
   }
 
-.naaminvoeren{
-    display: none;
+  100%{
+    right: 50.8%;
+  }
 }
 
-.naaminvoeren{
+header section img{
   position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
-  overflow: auto;
-  justify-content: center;
-  align-items: center;
+  animation: verplaatsendSpook 2.5s linear infinite;
+  height: 3.5vh;
+  top: 8.5%;
 }
 
-.naaminvoeren section{
+header{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+header section h1{
+  margin-top: 0.7em;
+  margin-bottom: 0.15em;
+  font-size: 5.5em;
+}
+
+header section h2{
+  margin-bottom: 3em;
+  margin-left: 17em;
+
+  font-size: 1.5em;
+  font-family: 'Engel', sans-serif; 
+}
+
+header button{
+  margin-top: 5.5em;
+  font-size: 1.5em;
+  padding: 0.8em 4em;
+}
+
+header button:hover{
+  background-color: rgb(1,237,143);
+}
+
+/* --------------------------index---------------------- */
+
+/* --------------------------naam invoeren---------------------- */
+
+.gamenaaminvoeren section{ /* groot zwart vlak */
   background-color: black;
   color: white;
 
@@ -91,13 +136,13 @@ button:hover{
   margin-top: 11em;
 }
 
-.naaminvoeren h2{
+.gamenaaminvoeren h2{
   font-size: 3em;
 }
 
-.naaminvoeren p{
+.gamenaaminvoeren p{
   font-size: 1.2em;
-  margin-top: 2em;
+  margin-top: 1em;
 }
 
 input{
@@ -106,58 +151,182 @@ input{
   padding: 8px;
   width: 150px;
   font-size: 16px;
+
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
 }
 
-.knop3{
+.volgendeknop{
   display: none;
-
   position: fixed;
-  margin-left: 19.5em;
+  z-index: 2;
+  top: 59%;
+  left: 44.3%; 
 }
 
-/* --------------------------spelen---------------------- */
-
-.tweede header{
+.zwarteachtergrond{ /* grijs/ zwarte achtergrond */
   display: flex;
   flex-direction: column;
-  align-items: center;
   text-align: center;
 
-  margin-top: 4em;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
-.tweede h1{
-  font-size: 4em;
-  margin-bottom: 0.5em;
-}
+/* --------------------------naam invoeren---------------------- */
 
-.container{
+/* --------------------------character kiezen---------------------- */
+
+.characterkiezen{
+  background-color: black;
+  color: white;
+
+  width: 50vw;
+  height: 50vh;
+
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 11em;
+}
+
+.characterkiezen h2{
+  font-size: 3em;
+  padding-top: 0.2em;
+}
+
+.characterkiezen img{
+  height: 38vh;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.characterkiezen img:hover{
+  transform: scale(1.3)
+}
+
+.spelladen h3{
+  margin-top: 10.5em;
+  font-size: 1.3em;
+}
+
+.spelladen img{
+  height: 25vh;
+  margin-top: 2.5em;
+}
+
+/* --------------------------character kiezen---------------------- */
+
+/* -------------------------------spelen---------------------- */
+
+header div{
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 1em;
+}
+
+header div h1{
+  font-size: 4em;
+  margin-bottom: 0.1em;
+}
+
+header div p{  /* scoreboard */
+  position: fixed;
+  font-size: 1.2em;
+  color: red;
+  background-color: black;
+  padding: 1em;
+  width: 10vw;
+  left: 44%;
+  margin-top: 1em;
+  border-radius: 0.2em;
+}
+
+.spelenpagina{
+  /* hier geen display: flex nodig omdat die al in js wordt uitgevoerd */
   flex-direction: row;
   justify-content: space-between;
-  text-align: center;
-
-  margin: 3em;
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 1em;
 }
 
-.container div p{
+.spelenpagina section{
+  display: flex;
+  flex-direction: row;
+}
+
+.spelenpagina section div{
+  display: flex;
+  flex-direction: column;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+}
+
+#computerkeuze{
+  margin-top: 10em;
+}
+
+.spelenpagina section p{
   margin-top: 2em;
   margin-bottom: 1em;
+  color: white;
 }
 
-.container div img{
-  padding: 1em;
-
-  height: 10vw;
+header div h2{
+  color: white;
+  font-family: 'Engel', sans-serif;
 }
 
-.tweede button{
-  display: block;
-  margin: 0 auto;
+.spelenpagina h3{
+  color: cyan;
+  font-family: 'Bowser', sans-serif;
+  letter-spacing: 0.2em;
+  font-size: 5em;
 }
 
+#charactergebruiker,
+.mikasa{
+  object-fit: cover;
+  height: 50vh;
+}
 
+#steen,
+#papier,
+#schaar{
+  object-fit: cover;
+  width: 6.5vw;
+}
 
+.optiesspel{
+  cursor: pointer;
+}
 
+.optiesspel img{
+  padding-top: 0.2em;
+}
 
+.optiesspel img:hover{
+  transform: scale(1.2)
+}
 
+.gebruikerkeuze,
+#computerkeuze{
+  object-fit: cover;
+  height: 27vh;
+  margin-top: 10em;
+}
+
+.confetti{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100vw;
+  opacity: 50%;
+}
