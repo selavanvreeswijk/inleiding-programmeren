@@ -11,12 +11,14 @@ const spelerGekozenGeluid = new Audio ('./audio/teleport.mp3') // bron geluid ht
 const spookyMuziekAfspelen = document.querySelector('header p') 
 const spookyMuziekGeluid = new Audio ('./audio/scarymusic.mp3') // / bron geluid https://pixabay.com/sound-effects/scary-music-box-for-spooky-scenes-165983/
 let muziekStarten = true;
+const maakKeuze = document.querySelector('.keys')
 
 zwarteAchtergrond.style.display = 'none';
 titelSpelen.style.display = 'none';
 paginaSpelen.style.display = 'none';
 confetti.style.display = 'none';
 spelLaden.style.display = 'none';
+maakKeuze.style.display = 'none';
 
 // ------------------------------naam invoeren-------------------------------------------------------------------------------------------------------------------------
 
@@ -70,7 +72,15 @@ const knopIndienen = document.querySelector('.gamenaaminvoeren button')
 const titelAllereerst = document.querySelector('.gamenaaminvoeren section h2')
 const volgendeKnop = document.querySelector('.volgendeknop')
 
-knopIndienen.addEventListener("click", () => {
+document.body.addEventListener('keydown', (ev) => {
+    if (ev.key === "Enter"){ // bron keyboardevents leren gebruiken https://www.youtube.com/watch?v=Q3ktcptd2yI
+        klikOpIndienen();
+    }
+})
+
+knopIndienen.addEventListener("click", klikOpIndienen)
+
+function klikOpIndienen() {
     opKnopKlikken()
     berichtVerschijnen.style.display = 'block';
     berichtVerschijnen.style.color = 'red';
@@ -93,7 +103,7 @@ knopIndienen.addEventListener("click", () => {
             berichtVerschijnen.classList.remove('grapje');
         }, 1500);
     }, 1500);
-})
+}
 
 // -----------------------naam invoeren + grap-------------------------------------------------------------------------------------------------------
 
@@ -143,30 +153,44 @@ function spelSpelen(){
     zwarteAchtergrond.style.display = 'none';
     titelSpelen.style.display = 'block';
     paginaSpelen.style.display = 'flex';
+    maakKeuze.style.display = 'block';
+
+    // muziek
     audioRockIntro.pause()
     achtergrondMuziekje.loop = true; // bron https://gist.github.com/thebigbad/878907
     achtergrondMuziekje.play();
-
     achtergrondMuziekje.volume = 0.3;
 
-    const afbeeldenNaamGebruiker = document.querySelector('.optiesspel h3') 
+    const afbeeldenNaamGebruiker = document.querySelector('.inputgebruiker') 
     afbeeldenNaamGebruiker.textContent =`${naamGebruiker.value}`;
 
     const achtergrondAfbeelding = document.querySelector('body'); // achtergrondafbeelding bron https://unsplash.com/photos/two-arcade-cabinets-zpxKdH_xNSI
     achtergrondAfbeelding.style.backgroundImage = 'url(./images/arcade.png)';
+
+    const keuzeKeys = { // hier heeft chatGPT me bij geholpen, ik kwam er niet uit hoe ik anders de keys aan de afbeeldingen moest linken
+        's': 'schaar',
+        'r': 'steen',
+        'p': 'papier'
+    }
+    
+    document.body.addEventListener('keydown', (ev) => {
+        const keuze = keuzeKeys[ev.key];
+        if (keuze){
+            afbeeldingGebruikerkeuze.src = afbeeldingen[keuze];
+            spelen(keuze);
+        }
+    })
 }
 
 // tekst klik op een afbeelding laten knipperen----------------------------------------------------------------------
 
-const klikOpKeuze = document.querySelector('.spelenpagina section p')
-
 setInterval( () => { 
-    if (klikOpKeuze.style.visibility === 'hidden') { // chatGPT heeft me geholpen met de term visibility
-        klikOpKeuze.style.visibility = 'visible';
+    if (maakKeuze.style.visibility === 'hidden') { // chatGPT heeft me geholpen met de term visibility
+        maakKeuze.style.visibility = 'visible';
     } else {
-        klikOpKeuze.style.visibility = 'hidden';
+        maakKeuze.style.visibility = 'hidden';
     }
-}, 1500)
+}, 1750)
 
 // klikken op keuze steen papier schaar, werkelijk spelen ------------------------------------------------------------
 
@@ -201,7 +225,7 @@ afbeeldingenOpties.forEach(afbeeldingOptie => {
 function getRandomKeuze(){ 
     const keuzes = ["steen", "papier", "schaar"];
     const randomIndex = Math.floor(Math.random() * 3);
-    randomKeuze = keuzes[randomIndex];
+    return keuzes[randomIndex];
 }
 
 function spelen(gebruikerKeuze){
@@ -210,7 +234,7 @@ function spelen(gebruikerKeuze){
     computerAfbeelding.src = './images/loading.gif'; // loading gif bron https://www.google.com/search?q=loading+gif+png&tbm=isch&ved=2ahUKEwiR3KDg-4SFAxXUj_0HHQfyC-oQ2-cCegQIABAA&oq=loading+gif+png&gs_lp=EgNpbWciD2xvYWRpbmcgZ2lmIHBuZzIFEAAYgAQyBBAAGB4yBBAAGB4yBBAAGB4yBBAAGB4yBhAAGAUYHjIGEAAYBRgeMgYQABgFGB4yBhAAGAUYHjIGEAAYBRgeSN0ZUOMCWJcWcAZ4AJABAJgBOaAB5QKqAQE3uAEDyAEA-AEBigILZ3dzLXdpei1pbWfCAgoQABiABBiKBRhDwgIGEAAYBxgewgIHEAAYgAQYE8ICCBAAGAUYHhgTwgIIEAAYCBgeGBOIBgE&sclient=img&ei=v_P7ZdGADNSf9u8Ph-Sv0A4&bih=732&biw=1512&prmd=ivnbz&rlz=1C5MACD_enNL1064NL1064#imgrc=9rvBEbPXvUM4PM
 
     setTimeout(() => {
-        getRandomKeuze();
+        randomKeuze = getRandomKeuze();
         computerAfbeelding.src = afbeeldingen[randomKeuze];
         bepaalResultaat(gebruikerKeuze, randomKeuze);
     }, 600);

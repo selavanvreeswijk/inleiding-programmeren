@@ -276,6 +276,11 @@ header div h1{
   margin-bottom: 0.1em;
 }
 
+header div h2{
+  color: white;
+  font-family: 'Engel', sans-serif;
+}
+
 header div p{  /* scoreboard */
   position: fixed;
   font-size: 1.2em;
@@ -288,79 +293,80 @@ header div p{  /* scoreboard */
   border-radius: 0.2em;
 }
 
-.spelenpagina{
+
+
+
+.spelenpagina{ /* alles */
   /* hier geen display: flex nodig omdat die al in js wordt uitgevoerd */
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 2em;
-  margin-right: 2em;
-  margin-top: 1em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  max-width: 100vw;
+  max-height: 100vh;
 }
 
-.spelenpagina section{
+.optiesspel,
+.optiescomputer{ /* keuzes */
   display: flex;
   flex-direction: row;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
-.spelenpagina section div{
+.optiesspel div{ /* keuzes gebruiker */
   display: flex;
   flex-direction: column;
-  padding-left: 2.5em;
-  padding-right: 2.5em;
+  margin-left: 2em;
+  padding-top: 2em;
 }
 
 #computerkeuze{
-  margin-top: 10em;
+  padding-right: 7em;
 }
 
-.spelenpagina section p{
-  margin-top: 2em;
-  margin-bottom: 1em;
-  color: white;
-}
-
-header div h2{
-  color: white;
-  font-family: 'Engel', sans-serif;
-}
-
-.spelenpagina h3{
+.spelenpagina h3{  /* namen gebruiker & Sela(computer) */
   color: rgb(149,245,229);
   font-family: 'Bowser', sans-serif;
   letter-spacing: 0.2em;
   font-size: 5em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 #charactergebruiker,
-.mikasa{
+.mikasa{ /* spelers gebruiker en Sela */
   object-fit: cover;
-  height: 50vh;
+  height: 60vh;
+}
+
+.gebruikerkeuze,
+#computerkeuze{ /* uitkomst gebruiker & computer */
+  object-fit: cover;
+  height: 27vh;
+  margin-top: 5em;
+  padding-left: 2em;
 }
 
 #steen,
 #papier,
-#schaar{
+#schaar{ /* afbeeldingen Steen, Papier, Schaar */
   object-fit: cover;
-  width: 6.5vw;
-}
-
-.optiesspel{
+  width: 5vw;
   cursor: pointer;
+  padding-top: 1em;
 }
 
-.optiesspel img{
-  padding-top: 0.2em;
-}
-
-.optiesspel img:hover{
+#steen:hover,
+#papier:hover,
+#schaar:hover{
   transform: scale(1.2)
 }
 
-.gebruikerkeuze,
-#computerkeuze{
-  object-fit: cover;
-  height: 27vh;
-  margin-top: 10em;
+.keys{
+  color: white;
+  margin-top: 1em;
+  margin-left: 50em;
 }
 
 .confetti{
@@ -369,5 +375,5 @@ header div h2{
   left: 0;
   width: 100vw;
   opacity: 50%;
-  z-index: 999;
+  z-index: 90;
 }
