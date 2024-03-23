@@ -26,7 +26,6 @@
 html{
   background-color: pink; /* roze gehouden want dat is leuk wanneer je de pagina beweegt */
   letter-spacing: 0.04em;
-  /* font-family: '', sans-serif;  */
 }
 
 body{
@@ -293,8 +292,14 @@ header div p{  /* scoreboard */
   border-radius: 0.2em;
 }
 
-
-
+header div h3{
+  color: rgb(149,245,229);
+  font-family: 'Bowser', sans-serif;
+  letter-spacing: 0.2em;
+  font-size: 5em;
+  margin-left: 15.5em;
+  position: fixed;
+}
 
 .spelenpagina{ /* alles */
   /* hier geen display: flex nodig omdat die al in js wordt uitgevoerd */
@@ -318,20 +323,18 @@ header div p{  /* scoreboard */
   display: flex;
   flex-direction: column;
   margin-left: 2em;
-  padding-top: 2em;
 }
 
 #computerkeuze{
   padding-right: 7em;
 }
 
-.spelenpagina h3{  /* namen gebruiker & Sela(computer) */
+.spelenpagina h3{  /* namen gebruiker */
   color: rgb(149,245,229);
   font-family: 'Bowser', sans-serif;
   letter-spacing: 0.2em;
   font-size: 5em;
   margin-left: 1em;
-  margin-right: 1em;
 }
 
 #charactergebruiker,
@@ -340,13 +343,23 @@ header div p{  /* scoreboard */
   height: 60vh;
 }
 
-.gebruikerkeuze,
-#computerkeuze{ /* uitkomst gebruiker & computer */
+.mikasa{
+  margin-top: 5em;
+}
+
+.gebruikerkeuze{ /* uitkomst gebruiker */
   object-fit: cover;
   height: 27vh;
   margin-top: 5em;
-  padding-left: 2em;
+  padding-left: 4em;
 }
+
+#computerkeuze{ /* uitkomst computer */
+  object-fit: cover;
+  height: 27vh;
+  margin-top: 10.4em;
+  padding-left: 2em;
+} 
 
 #steen,
 #papier,
@@ -365,8 +378,9 @@ header div p{  /* scoreboard */
 
 .keys{
   color: white;
-  margin-top: 1em;
   margin-left: 50em;
+  position: fixed;
+  bottom: 2%;
 }
 
 .confetti{

@@ -12,6 +12,7 @@ const spookyMuziekAfspelen = document.querySelector('header p')
 const spookyMuziekGeluid = new Audio ('./audio/scarymusic.mp3') // / bron geluid https://pixabay.com/sound-effects/scary-music-box-for-spooky-scenes-165983/
 let muziekStarten = true;
 const maakKeuze = document.querySelector('.keys')
+const afbeeldingGebruikerkeuze = document.querySelector('.gebruikerkeuze')
 
 zwarteAchtergrond.style.display = 'none';
 titelSpelen.style.display = 'none';
@@ -19,6 +20,7 @@ paginaSpelen.style.display = 'none';
 confetti.style.display = 'none';
 spelLaden.style.display = 'none';
 maakKeuze.style.display = 'none';
+afbeeldingGebruikerkeuze.style.display = 'none'
 
 // ------------------------------naam invoeren-------------------------------------------------------------------------------------------------------------------------
 
@@ -31,7 +33,7 @@ const audioRockIntro = new Audio ('./audio/rockintro.mp3') // bron geluid https:
 
 function opKnopKlikken(){
     klikOpKnop.play()
-    klikOpKnop.volume = 0.05; // bron https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
+    klikOpKnop.volume = 0.07; // bron https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
 }
 
 // knop enge muziek afspelen beginpagina
@@ -41,7 +43,7 @@ spookyMuziekAfspelen.addEventListener('click', () => {
         muziekStarten = false;
 
         spookyMuziekGeluid.play()
-        spookyMuziekGeluid.volume = 0.2;
+        spookyMuziekGeluid.volume = 0.4;
         spookyMuziekAfspelen.style.backgroundColor = 'rgb(1,237,143)';
     } else{
         muziekStarten = true;
@@ -54,7 +56,7 @@ spookyMuziekAfspelen.addEventListener('click', () => {
 startKnop.addEventListener('click', () => {
     opKnopKlikken()
     audioRockIntro.play()
-    audioRockIntro.volume = 0.3;
+    audioRockIntro.volume = 0.5;
     spookyMuziekGeluid.pause();
 
     gamenaamTekst.style.display = 'block';
@@ -98,7 +100,6 @@ function klikOpIndienen() {
 
         setTimeout(() => {
             berichtVerschijnen.textContent = `Laten we doorgaan, ${naamGebruiker.value}!`;
-            berichtVerschijnen.style.color = 'white';
             volgendeKnop.style.display = 'block';
             berichtVerschijnen.classList.remove('grapje');
         }, 1500);
@@ -118,7 +119,7 @@ const gekozenCharacter = document.getElementById('charactergebruiker')
 characterKiezen.style.display = 'none';
 
 volgendeKnop.addEventListener("click", () => {
-    opKnopKlikken()
+    opKnopKlikken();
     titelIndex.style.display = 'none';
     gamenaamTekst.style.display = 'none';
     volgendeKnop.style.display = 'none';
@@ -134,7 +135,9 @@ alleSpelers.forEach(speler => {
         gekozenCharacter.src = `./images/${speler.id}.png`;
 
         gameLadenGeluid.play();
+        gameLadenGeluid.volume = 0.5;
         spelerGekozenGeluid.play();
+        spelerGekozenGeluid.volume = 0.5;
 
         characterKiezen.style.display ='none';
         spelLaden.style.display = 'block';
@@ -159,7 +162,7 @@ function spelSpelen(){
     audioRockIntro.pause()
     achtergrondMuziekje.loop = true; // bron https://gist.github.com/thebigbad/878907
     achtergrondMuziekje.play();
-    achtergrondMuziekje.volume = 0.3;
+    achtergrondMuziekje.volume = 0.4;
 
     const afbeeldenNaamGebruiker = document.querySelector('.inputgebruiker') 
     afbeeldenNaamGebruiker.textContent =`${naamGebruiker.value}`;
@@ -199,11 +202,9 @@ const afbeeldingPapier = document.getElementById('papier')
 const afbeeldingSchaar = document.getElementById('schaar')
 const computerAfbeelding = document.getElementById('computerkeuze')
 const resultaat = document.querySelector('header div h2')
-const afbeeldingGebruikerkeuze = document.querySelector('.gebruikerkeuze')
 const audioPartyHorn = new Audio('./audio/partyhorn.mp3') // bron https://pixabay.com/sound-effects/party-horn-68443/
 let randomKeuze = 0
 
-afbeeldingGebruikerkeuze.style.display = 'none'
 computerAfbeelding.style.display = 'none'
 
 const afbeeldingen = { // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
@@ -225,7 +226,7 @@ afbeeldingenOpties.forEach(afbeeldingOptie => {
 function getRandomKeuze(){ 
     const keuzes = ["steen", "papier", "schaar"];
     const randomIndex = Math.floor(Math.random() * 3);
-    return keuzes[randomIndex];
+    return keuzes[randomIndex]; // hier heeft chatGPT me bij geholpen
 }
 
 function spelen(gebruikerKeuze){
@@ -242,7 +243,7 @@ function spelen(gebruikerKeuze){
 
 function bepaalResultaat(gebruikerKeuze, randomKeuze) {
     if (gebruikerKeuze === randomKeuze) {
-        resultaat.textContent = 'Gelijkspel!';
+        resultaat.textContent = 'Gelijkspel';
     } else if ((gebruikerKeuze === 'steen' && randomKeuze === 'schaar') || (gebruikerKeuze === 'papier' && randomKeuze === 'steen') || (gebruikerKeuze === 'schaar' && randomKeuze === 'papier')) {
        
         // confetti & partyhorn
