@@ -1,3 +1,5 @@
+/* algemeen---------------------------------------------------------- */
+
 * {
     margin: 0;
     padding: 0;
@@ -24,9 +26,8 @@
 }
 
 html{
-  background-color: pink; /* roze gehouden want dat is leuk wanneer je de pagina beweegt */
+  background-color: pink; /* roze expres gehouden, zo zie je achtergrond kleur nog bij laden */
   letter-spacing: 0.04em;
-  /* font-family: '', sans-serif;  */
 }
 
 body{
@@ -51,25 +52,26 @@ p, button{
 }
 
 button{
-  background-color: rgb(233,51,153);
+  background-color:rgb(233,51,153);
   border: none;
 
   color: white; 
-
   text-align: center; 
-  text-decoration: none; 
   font-size: 1em;
-
+  
   padding: 0.9em 3.1em;
+  cursor: pointer;
 
-  cursor: pointer; 
+  transition: background-color 0.3s, color 0.3s;
 }
 
 button:hover{
   background-color: rgb(1,237,143);
 }
 
-/* ----------------------------index------------------------- */
+/* algemeen---------------------------------------------------------- */
+
+/* ----------------------------beginpagina------------------------- */
 
 @keyframes verplaatsendSpook{
   0%{
@@ -109,9 +111,11 @@ header section h2{
 }
 
 header button{ /* startknop */
-  margin-top: 5.5em;
   font-size: 1.5em;
+
+  margin-top: 5.5em;
   padding: 0.8em 4em;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 header button:hover{
@@ -136,111 +140,30 @@ header button:hover{
     transform: rotate(-5deg);
   }
 }
-/* --------------------------index---------------------- */
 
-/* --------------------------naam invoeren---------------------- */
+header section p{  /* spooky muziek aanzetten knop */
+  margin-top: 9em;
+  margin-left: 6em;
+  padding: 1.5em;
+  width: 2.5vw;
 
-.gamenaaminvoeren section{ /* groot zwart vlak */
-  background-color: black;
   color: white;
+  background-color: rgb(233,51,153);
+  border-radius: 50%;
+  font-size: 0.6em;
 
-  width: 50vw;
-  height: 50vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 11em;
-}
-
-.gamenaaminvoeren h2{
-  font-size: 3em;
-}
-
-.gamenaaminvoeren p{
-  font-size: 1.2em;
-  margin-top: 1em;
-}
-
-input{
-  border: 2px solid;
-  border-radius: 5px;
-  padding: 8px;
-  width: 150px;
-  font-size: 16px;
-
-  margin-top: 0.8em;
-  margin-bottom: 0.8em;
-}
-
-.volgendeknop{
-  display: none;
-  position: fixed;
-  z-index: 2;
-  top: 59%;
-  left: 44.3%; 
-}
-
-.zwarteachtergrond{ /* grijs/ zwarte achtergrond */
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
-}
-
-/* --------------------------naam invoeren---------------------- */
-
-/* --------------------------character kiezen---------------------- */
-
-.characterkiezen{
-  background-color: black;
-  color: white;
-
-  width: 50vw;
-  height: 50vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 11em;
-}
-
-.characterkiezen h2{
-  font-size: 3em;
-  padding-top: 0.2em;
-}
-
-.characterkiezen img{
-  height: 38vh;
   cursor: pointer;
-  object-fit: cover;
+  border: 1.5px black solid;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.characterkiezen img:hover{
-  transform: scale(1.3)
+header section p:hover{
+  background-color: rgb(1,237,143);
 }
 
-.spelladen h3{
-  margin-top: 10.5em;
-  font-size: 1.3em;
-}
+/* --------------------------beginpagina---------------------- */
 
-.spelladen img{
-  height: 25vh;
-  margin-top: 2.5em;
-}
-
-/* --------------------------character kiezen---------------------- */
-
-/* -------------------------------spelen---------------------- */
+/* --------------------------spelenpagina---------------------- */
 
 header div{
   display: flex;
@@ -254,91 +177,230 @@ header div h1{
   margin-bottom: 0.1em;
 }
 
-header div p{  /* scoreboard */
-  position: fixed;
-  font-size: 1.2em;
-  color: red;
-  background-color: black;
-  padding: 1em;
-  width: 10vw;
-  left: 44%;
-  margin-top: 1em;
-  border-radius: 0.2em;
-}
-
-.spelenpagina{
-  /* hier geen display: flex nodig omdat die al in js wordt uitgevoerd */
-  flex-direction: row;
-  justify-content: space-between;
-  margin-left: 2em;
-  margin-right: 2em;
-  margin-top: 1em;
-}
-
-.spelenpagina section{
-  display: flex;
-  flex-direction: row;
-}
-
-.spelenpagina section div{
-  display: flex;
-  flex-direction: column;
-  padding-left: 2.5em;
-  padding-right: 2.5em;
-}
-
-#computerkeuze{
-  margin-top: 10em;
-}
-
-.spelenpagina section p{
-  margin-top: 2em;
-  margin-bottom: 1em;
-  color: white;
-}
-
 header div h2{
   color: white;
   font-family: 'Engel', sans-serif;
 }
 
-.spelenpagina h3{
-  color: cyan;
+header div p{  /* scoreboard */
+  position: fixed; /* zodat de namen van de gebruiker & computer (Sela) meer naar boven staan */
+  padding: 1em;
+  width: 10vw;
+  left: 44%;
+  margin-top: 1em;
+
+  font-size: 1.2em;
+  color: red;
+  background-color: black;
+  border-radius: 0.2em;
+}
+
+header div h3{ /* computernaam (Sela) */
+  position: fixed;
+  color: rgb(149,245,229);
   font-family: 'Bowser', sans-serif;
   letter-spacing: 0.2em;
   font-size: 5em;
+  margin-left: 15.5em;
 }
 
-#charactergebruiker,
-.mikasa{
-  object-fit: cover;
+/* --------------------------spelenpagina---------------------- */
+
+/* --------------------------gamenaam invoeren---------------------- */
+
+.zwarteachtergrond{ /* grijszwarte achtergrond */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.gamenaaminvoeren section{ /* groot zwart vlak */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 50vw;
   height: 50vh;
+
+  margin: 0 auto;
+  margin-top: 11em;
+  
+  background-color: black;
+  color: white;
 }
 
-#steen,
-#papier,
-#schaar{
-  object-fit: cover;
-  width: 6.5vw;
+.gamenaaminvoeren h2{
+  font-size: 3em;
 }
 
-.optiesspel{
-  cursor: pointer;
+.gamenaaminvoeren p{
+  font-size: 1.2em;
+  margin-top: 1em;
 }
 
-.optiesspel img{
+input{
+  border: 0.1em solid;
+  border-radius: 0.3em;
+  padding: 0.5em;
+  width: 5.5em; /* hopelijk voert de gebruiker hierdoor niet een te lange naam in, die valt anders onder het scorebord */
+  font-size: 1em;
+
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+.volgendeknop{
+  position: fixed;
+  z-index: 1;
+
+  top: 59%;
+  left: 43.5%;
+
+  font-size: 1.1em;
+  padding: 1.1em 3.4em;
+}
+
+/* --------------------------gamenaam invoeren---------------------- */
+
+/* --------------------------character kiezen---------------------- */
+
+.characterkiezen{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 11em;
+  width: 50vw;
+  height: 50vh;
+
+  background-color: black;
+  color: white;
+}
+
+.characterkiezen h2{
+  font-size: 3em;
   padding-top: 0.2em;
 }
 
-.optiesspel img:hover{
+.characterkiezen img{
+  height: 38vh;
+  cursor: pointer;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.characterkiezen img:hover{
+  transform: scale(1.4)
+}
+
+/* --------------------------character kiezen---------------------- */
+
+/* ----------------------------spel laden---------------------- */
+
+.spelladen h3{
+  margin-top: 10.5em;
+  font-size: 1.3em;
+}
+
+.spelladen img{ /*vingers die tikken*/
+  object-fit: cover;
+  height: 16vh;
+  margin-top: 2.5em;
+}
+
+/* ----------------------------spel laden---------------------- */
+
+/* -------------------------------spelen---------------------- */
+
+.spelenpagina{ /* alles */
+  /* hier geen display: flex nodig omdat die al in js wordt uitgevoerd */
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.spelenpagina h3{  /* gamenaam gebruiker */
+  color: rgb(149,245,229);
+  font-family: 'Bowser', sans-serif;
+  letter-spacing: 0.2em;
+  font-size: 5em;
+  
+  margin-left: 1em;
+}
+
+.optiesspel,
+.optiescomputer{ /* keuzes afbeeldingen steen, papier of schaar*/
+  display: flex;
+  flex-direction: row;
+
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.optiesspel div{ /* keuzes gebruiker */
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 2em;
+}
+
+.optiesspel div img{  /* afbeeldingen Steen, Papier, Schaar */
+  object-fit: cover;
+  width: 5vw;
+  cursor: pointer;
+  padding-top: 1em;
+  
+  transition: transform 0.3s ease;
+}
+
+.optiesspel div img:hover{
   transform: scale(1.2)
 }
 
-.gebruikerkeuze,
-#computerkeuze{
+.optiescomputer div img{
+  padding-right: 7em;
+}
+
+#charactergebruiker,
+.mikasa{ /* spelers gebruiker en Sela */
+  object-fit: cover;
+  height: 60vh;
+}
+
+.mikasa{
+  margin-top: 5em;
+}
+
+.gebruikerkeuze{ /* uitkomst gebruiker */
   object-fit: cover;
   height: 27vh;
-  margin-top: 10em;
+
+  margin-top: 5em;
+  padding-left: 4em;
+}
+
+.optiescomputer div img{ /* uitkomst computer */
+  object-fit: cover;
+  height: 27vh;
+
+  margin-top: 10.4em;
+  padding-left: 2em;
+}
+
+.toetsen{
+  color: white;
+  margin-left: 50em;
+  position: fixed;
+  bottom: 2%;
 }
 
 .confetti{
@@ -347,5 +409,5 @@ header div h2{
   left: 0;
   width: 100vw;
   opacity: 50%;
-  z-index: 999;
+  z-index: 90;
 }
