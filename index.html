@@ -19,17 +19,17 @@
 
                 <img src="./images/spook.webp" alt="Een spook"> <!-- bron spook https://www.vecteezy.com/png/12658583-halloween-ghost-spooky-ghost-->
 
-                <p>Klik mij</p>
+                <p>Klik mij</p> <!-- Spooky muziek aanzetten 'knop', gekozen voor <p> omdat het anders met de lay-out lastig werd -->
             </section>
-       
-            <div>
-                <h1>Steen, papier, schaar</h1> <!-- twee keer een h1 omdat het twee keer de grootste heading is op een nieuwe pagina -->
+
+            <div> <!-- zichtbaar wanneer het spel echt gespeeld wordt -->
+                <h1>Steen, papier, schaar</h1> <!-- twee keer een h1 omdat het twee keer de belangrijkste heading is op de nieuwe 'pagina' -->
 
                 <h2>Versla jij Sela?</h2>  
 
                 <p>Jouw score:</p>
 
-                <h3>Sela</h3> <!-- een oplossing om ervoor te zorgen dat deze niet meebeweegt met de afbeelding van de computer die wordt gegenereerd onder .spelenpagina-->
+                <h3>Sela</h3> <!-- een oplossing om ervoor te zorgen dat deze niet meebeweegt met de computerafbeelding die wordt gegenereerd onder .spelenpagina-->
             </div>
         </header>
 
@@ -57,21 +57,21 @@
                     <img id='hange' src="./images/hange.png" alt="Hange Zoë, uit de serie Attack on Titan"> <!-- bron Hange https://www.deviantart.com/maxiuchiha22/art/Hange-Zoe-render-3-Attack-on-Titan-TACTICS-878500199 -->
                 </div>
 
-                <div class="spelladen">
+                <div class="spelladen"> <!-- gekozen voor dit tussenscherm laden om extra tijd te rekken in het speelproces -->
                     <h3>Bereid je voor op de ultieme uitdaging...</h3>
 
-                    <img src="./images/loading.gif" alt="Loading Gif">
+                    <img src="./images/loadinghand.gif" alt="Een gifje van een hand die tikt, als wachten op het laden"> <!--bron https://pixabay.com/gifs/waiting-loading-hand-fingers-7579/ -->
                 </div>
             </div>
 
             <div class="spelenpagina">
                 <section>
-                    <h3 class="inputgebruiker">Naam</h3>
+                    <h3>Naam</h3>
 
                     <div class="optiesspel">
                         <img id='charactergebruiker' src="./images/eren.png" alt="Keuze van de gebruiker voor het character"> 
 
-                        <div>
+                        <div> 
                             <img id='steen' src="./images/rock.png" alt="Dwayne, The Rock, Johnson"> <!-- bron The Rock https://www.google.com/search?q=the+rock+png&tbm=isch&ved=2ahUKEwjH6MyyseqEAxXcy7sIHQwCDCgQ2-cCegQIABAA&oq=the+rock+png&gs_lp=EgNpbWciDHRoZSByb2NrIHBuZzIKEAAYgAQYigUYQzINEAAYgAQYigUYQxixAzIFEAAYgAQyChAAGIAEGIoFGEMyCBAAGIAEGLEDMggQABiABBixAzIFEAAYgAQyBRAAGIAEMgsQABiABBixAxiDATIFEAAYgARItBBQ1QZYxA9wAHgAkAEAmAF9oAG7BKoBAzQuMrgBA8gBAPgBAYoCC2d3cy13aXotaW1niAYB&sclient=img&ei=HgTuZcfhAdyX7_UPjISwwAI&bih=735&biw=1512&rlz=1C5MACD_enNL1064NL1064#imgrc=OUIP9teyJK_EqM -->
                             <img id='papier' src="./images/papier.jpeg" alt="Een stuk papier"> <!-- bron papier https://nl.vecteezy.com/png/1208962-papier -->
                             <img id='schaar' src="./images/schaar.png" alt="Een schaar"> <!-- bron schaar https://www.google.com/search?q=scissors+png&tbm=isch&ved=2ahUKEwj2kZm-suqEAxVsof0HHb84A8cQ2-cCegQIABAA&oq=scissor&gs_lp=EgNpbWciB3NjaXNzb3IqAggAMgoQABiABBiKBRhDMgoQABiABBiKBRhDMgUQABiABDIFEAAYgAQyChAAGIAEGIoFGEMyBRAAGIAEMgUQABiABDIKEAAYgAQYigUYQzIKEAAYgAQYigUYQzIFEAAYgARIqyJQ9ARYwxhwAngAkAECmAGUBaABzRaqAQsxLjUuMS4yLjEuMbgBAcgBAPgBAYoCC2d3cy13aXotaW1nwgIGEAAYBxgewgIEEAAYHsICDRAAGIAEGIoFGEMYsQOIBgE&sclient=img&ei=QgXuZfboL-zC9u8Pv_GMuAw&bih=735&biw=1512&rlz=1C5MACD_enNL1064NL1064#imgrc=Jn3k6symbRdiJM --> 
@@ -84,7 +84,7 @@
                 <div>
                     <div class="optiescomputer">
                         <div>
-                            <img id='computerkeuze' src="./images/papier.jpeg" alt="Random gegenereerde computerkeuze steen papier of schaar">
+                            <img src="./images/papier.jpeg" alt="Willekeurige gegenereerde computerkeuze steen papier of schaar">
                         </div>
 
                         <img class='mikasa' src="./images/mikasa.png" alt="Mikasa Ackerman, uit de serie Attack on Titan"> <!-- bron Mikasa https://vsbattles.fandom.com/wiki/Mikasa_Ackerman -->
@@ -94,11 +94,9 @@
 
             <img class=confetti src="./images/confetti.gif" alt="Een confetti gif"> <!-- bron confetti https://www.google.com/search?sca_esv=7a2ea2d467a33581&rlz=1C5MACD_enNL1064NL1064&q=confetti+gif+png&tbm=isch&source=lnms&prmd=ivnbz&sa=X&sqi=2&ved=2ahUKEwic3sGW24KFAxVMxQIHHULGABMQ0pQJegQIDBAB&biw=1512&bih=732&dpr=2#imgrc=4zLGFzAHnTiJGM -->
 
-            <p class= keys>*Klik op een afbeelding of druk op je toetsenbord op r (rock), p (papier) of s (schaar)</p>
+            <p class=keys>*Klik op een afbeelding of druk op je toetsenbord op r (rock), p (papier) of s (schaar)</p>
         </main>
 
-        <footer>
-        </footer>
         <script src="js/script.js"></script>
     </body>
 </html>

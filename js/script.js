@@ -1,7 +1,7 @@
-// beginwaarden ------------------------------------------------------------------------------------------------------------------------------------------------------------
+// algemeen ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 const zwarteAchtergrond = document.querySelector('.zwarteachtergrond')
-const titelSpelen = document.querySelector('header div')
+const titelsSpelen = document.querySelector('header div')
 const paginaSpelen = document.querySelector('.spelenpagina')
 const confetti = document.querySelector('.confetti')
 const spelLaden = document.querySelector('.spelladen')
@@ -10,17 +10,21 @@ const gameLadenGeluid = new Audio ('./audio/lasercharging.mp3') // bron geluid h
 const spelerGekozenGeluid = new Audio ('./audio/teleport.mp3') // bron geluid https://pixabay.com/sound-effects/teleport-90137/
 const spookyMuziekAfspelen = document.querySelector('header p') 
 const spookyMuziekGeluid = new Audio ('./audio/scarymusic.mp3') // / bron geluid https://pixabay.com/sound-effects/scary-music-box-for-spooky-scenes-165983/
-let muziekStarten = true;
 const maakKeuze = document.querySelector('.keys')
 const afbeeldingGebruikerkeuze = document.querySelector('.gebruikerkeuze')
+const volgendeKnop = document.querySelector('.volgendeknop')
+let muziekStarten = true;
 
 zwarteAchtergrond.style.display = 'none';
-titelSpelen.style.display = 'none';
+titelsSpelen.style.display = 'none';
 paginaSpelen.style.display = 'none';
 confetti.style.display = 'none';
 spelLaden.style.display = 'none';
 maakKeuze.style.display = 'none';
 afbeeldingGebruikerkeuze.style.display = 'none'
+volgendeKnop.style.display = 'none'
+
+// algemeen ------------------------------------------------------------------------
 
 // ------------------------------naam invoeren-------------------------------------------------------------------------------------------------------------------------
 
@@ -72,7 +76,6 @@ const naamGebruiker = document.querySelector('input')
 const berichtVerschijnen = document.querySelector('.gamenaaminvoeren p')
 const knopIndienen = document.querySelector('.gamenaaminvoeren button')
 const titelAllereerst = document.querySelector('.gamenaaminvoeren section h2')
-const volgendeKnop = document.querySelector('.volgendeknop')
 
 document.body.addEventListener('keydown', (ev) => {
     if (ev.key === "Enter"){ // bron keyboardevents leren gebruiken https://www.youtube.com/watch?v=Q3ktcptd2yI
@@ -110,11 +113,9 @@ function klikOpIndienen() {
 
 // ------------------------speler kiezen--------------------------------------------------------------------------------------------------------------------
 
-const characterKiezen = document.querySelector('.characterkiezen')
-const characterLevi = document.getElementById('levi') // https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
-const characterEren = document.getElementById('eren')
-const characterHange = document.getElementById('hange')
-const gekozenCharacter = document.getElementById('charactergebruiker')
+const characterKiezen = document.querySelector('.characterkiezen');
+const alleSpelers = document.querySelectorAll('.characterkiezen img');
+const gekozenCharacter = document.getElementById('charactergebruiker');
 
 characterKiezen.style.display = 'none';
 
@@ -126,10 +127,7 @@ volgendeKnop.addEventListener("click", () => {
     characterKiezen.style.display ='block';
 })
 
-// op speler klikken
-
-const alleSpelers = [characterEren, characterHange, characterLevi];
-
+// Op speler klikken
 alleSpelers.forEach(speler => {
     speler.addEventListener('click', () => {
         gekozenCharacter.src = `./images/${speler.id}.png`;
@@ -154,7 +152,7 @@ const achtergrondMuziekje = new Audio('./audio/achtergrondmuziek.mp3') // https:
 
 function spelSpelen(){
     zwarteAchtergrond.style.display = 'none';
-    titelSpelen.style.display = 'block';
+    titelsSpelen.style.display = 'block';
     paginaSpelen.style.display = 'flex';
     maakKeuze.style.display = 'block';
 
@@ -164,7 +162,7 @@ function spelSpelen(){
     achtergrondMuziekje.play();
     achtergrondMuziekje.volume = 0.4;
 
-    const afbeeldenNaamGebruiker = document.querySelector('.inputgebruiker') 
+    const afbeeldenNaamGebruiker = document.querySelector('.spelenpagina h3') 
     afbeeldenNaamGebruiker.textContent =`${naamGebruiker.value}`;
 
     const achtergrondAfbeelding = document.querySelector('body'); // achtergrondafbeelding bron https://unsplash.com/photos/two-arcade-cabinets-zpxKdH_xNSI
@@ -197,10 +195,8 @@ setInterval( () => {
 
 // klikken op keuze steen papier schaar, werkelijk spelen ------------------------------------------------------------
 
-const afbeeldingSteen = document.getElementById('steen')
-const afbeeldingPapier = document.getElementById('papier')
-const afbeeldingSchaar = document.getElementById('schaar')
-const computerAfbeelding = document.getElementById('computerkeuze')
+const afbeeldingenOpties = document.querySelectorAll('#steen, #papier, #schaar');
+const computerAfbeelding = document.querySelector('.optiescomputer div img')
 const resultaat = document.querySelector('header div h2')
 const audioPartyHorn = new Audio('./audio/partyhorn.mp3') // bron https://pixabay.com/sound-effects/party-horn-68443/
 let randomKeuze = 0
@@ -212,8 +208,6 @@ const afbeeldingen = { // https://developer.mozilla.org/en-US/docs/Web/JavaScrip
     papier: "./images/papier.jpeg",
     schaar: "./images/schaar.png"
 }
-
-const afbeeldingenOpties = [afbeeldingSteen, afbeeldingPapier, afbeeldingSchaar];
 
 afbeeldingenOpties.forEach(afbeeldingOptie => {
     afbeeldingOptie.addEventListener('click', () => {
